@@ -1,7 +1,0 @@
-// API Key
-
-'Rdh3xU3f1PsmdIhdeVUQcoXPYQSdMPHgRdx / O4aLY1lScVQW0Guec4VR'
-
-// Private 
-
-'Wk0YqfiRxUkRnT53DrbwSkTXT0J1tcTF3PZD3QNmNjqkIjg5KQ4cGl141rLvU4zB7nVEXyS26blUoGDgjavXOw =='
