@@ -4,15 +4,18 @@
     "description": "",
     "main": "calculations.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "calculations.js"
     },
     "author": "michael curnes",
     "license": "MIT ",
     "dependencies": {
-        "inquirer": "^5.2.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/BouncingBison/add-bit-up"
+        "async": "^2.6.0",
+        "babar": "^0.2.0",
+        "inquirer": "^5.2.0",
+        "kraken-exchange-api": "^1.0.0",
+        "nodemon": "^1.17.3",
+        "underscore": "^1.8.3",
+        "wunderbar": "0.0.2"
     }
 }
