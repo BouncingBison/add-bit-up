@@ -4,7 +4,7 @@ var babar = require('babar');
 var util = require('util');
 var async = require('async');
 var _ = require('underscore');
-var kraken = new KrakenClient(config.apiSettings.apiKey, config.apiSettings.private);
+var kraken = new KrakenClient(config.kraken.apiKey, config.kraken.private);
 
 var calls = {};
 
@@ -25,7 +25,7 @@ calls.price = function(err) {
         console.log(err);
     } else {
 
-        this.kraken = new KrakenClient(config.apiSettings.apiKey, config.apiSettings.private);
+        this.kraken = new KrakenClient(config.kraken.apiKey, config.kraken.private);
         this.kraken.api('Ticker', { "pair": 'XXBTZUSD' }, function(error, data) {
             if (error) {
                 console.log(error);

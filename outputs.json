@@ -1,0 +1,1575 @@
+// Binance ws websocket object;
+
+
+// WebSocket {
+//     domain: null,
+//     _events: { message: [Function], error: [Function] },
+//     _eventsCount: 2,
+//     _maxListeners: undefined,
+//     readyState: 0,
+//     bytesReceived: 0,
+//     extensions: {},
+//     protocol: '',
+//     _binaryType: 'nodebuffer',
+//     _finalize: [Function: bound finalize],
+//     _closeFrameReceived: false,
+//     _closeFrameSent: false,
+//     _closeMessage: '',
+//     _closeTimer: null,
+//     _finalized: false,
+//     _closeCode: 1006,
+//     _receiver: null,
+//     _sender: null,
+//     _socket: null,
+//     _ultron: null,
+//     protocolVersion: 13,
+//     _isServer: false,
+//     url: 'wss://stream.binance.com:9443/ws/ZM7xb53GuLe3Wn0vRUNkO5d0HjQGvMIAasMHGPCWrsQBzjbfNBnMVRgdUGzV',
+//     _req: ClientRequest {
+//         domain: null,
+//         _events: {
+//             socket: [Object],
+//             error: [Function],
+//             response: [Function],
+//             upgrade: [Function]
+//         },
+//         _eventsCount: 4,
+//         _maxListeners: undefined,
+//         output: ['GET /ws/ZM7xb53GuLe3Wn0vRUNkO5d0HjQGvMIAasMHGPCWrsQBzjbfNBnMVRgdUGzV HTTP/1.1\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Key: 30iuoqZdpR08W6Iwb80y/g==\r\nConnection: Upgrade\r\nUpgrade: websocket\r\nSec-WebSocket-Extensions: permessage-deflate; client_max_window_bits\r\nHost: stream.binance.com:9443\r\n\r\n'],
+//         outputEncodings: ['latin1'],
+//         outputCallbacks: [
+//             [Function: finish]
+//         ],
+//         outputSize: 295,
+//         writable: true,
+//         _last: true,
+//         upgrading: true,
+//         chunkedEncoding: false,
+//         shouldKeepAlive: true,
+//         useChunkedEncodingByDefault: false,
+//         sendDate: false,
+//         _removedHeader: { connection: false },
+//         _contentLength: 0,
+//         _hasBody: true,
+//         _trailer: '',
+//         finished: true,
+//         _headerSent: true,
+//         socket: null,
+//         connection: null,
+//         _header: 'GET /ws/ZM7xb53GuLe3Wn0vRUNkO5d0HjQGvMIAasMHGPCWrsQBzjbfNBnMVRgdUGzV HTTP/1.1\r\nSec-WebSocket-Version: 13\r\nSec-WebSocket-Key: 30iuoqZdpR08W6Iwb80y/g==\r\nConnection: Upgrade\r\nUpgrade: websocket\r\nSec-WebSocket-Extensions: permessage-deflate; client_max_window_bits\r\nHost: stream.binance.com:9443\r\n\r\n',
+//         _headers: {
+//             'sec-websocket-version': 13,
+//             'sec-websocket-key': '30iuoqZdpR08W6Iwb80y/g==',
+//             connection: 'Upgrade',
+//             upgrade: 'websocket',
+//             'sec-websocket-extensions': 'permessage-deflate; client_max_window_bits',
+//             host: 'stream.binance.com:9443'
+//         },
+//         _headerNames: {
+//             'sec-websocket-version': 'Sec-WebSocket-Version',
+//             'sec-websocket-key': 'Sec-WebSocket-Key',
+//             connection: 'Connection',
+//             upgrade: 'Upgrade',
+//             'sec-websocket-extensions': 'Sec-WebSocket-Extensions',
+//             host: 'Host'
+//         },
+//         _onPendingData: null,
+//         agent: Agent {
+//             domain: null,
+//             _events: [Object],
+//             _eventsCount: 1,
+//             _maxListeners: undefined,
+//             defaultPort: 443,
+//             protocol: 'https:',
+//             options: [Object],
+//             requests: {},
+//             sockets: [Object],
+//             freeSockets: {},
+//             keepAliveMsecs: 1000,
+//             keepAlive: false,
+//             maxSockets: Infinity,
+//             maxFreeSockets: 256,
+//             maxCachedSessions: 100,
+//             _sessionCache: [Object]
+//         },
+//         socketPath: undefined,
+//         timeout: undefined,
+//         method: 'GET',
+//         path: '/ws/ZM7xb53GuLe3Wn0vRUNkO5d0HjQGvMIAasMHGPCWrsQBzjbfNBnMVRgdUGzV',
+//         _ended: false
+//     }
+// }
+
+
+
+
+// (message) => {
+//     let event;
+//     try {
+//         event = JSON.parse(message);
+//     } catch (e) {
+//         event = message;
+//     }
+//     if (this._beautify) {
+//         if (event.stream) {
+//             event.data = this._beautifyResponse(event.data);
+//         } else {
+//             event = this._beautifyResponse(event);
+//         }
+//     }
+
+//     eventHandler(event);
+// }
+// undefined
+// undefined {
+//     eventType: 'executionReport',
+//     eventTime: 1523991579799,
+//     symbol: 'DNTBTC',
+//     newClientOrderId: 'web_f80852b974784fb4a3947edaa35dbcc1',
+//     side: 'BUY',
+//     orderType: 'LIMIT',
+//     cancelType: 'GTC',
+//     quantity: '693.00000000',
+//     price: '0.00000923',
+//     stopPrice: '0.00000000',
+//     icebergQuantity: '0.00000000',
+//     g: -1,
+//     originalClientOrderId: 'null',
+//     executionType: 'TRADE',
+//     orderStatus: 'PARTIALLY_FILLED',
+//     rejectReason: 'NONE',
+//     orderId: 10664499,
+//     lastTradeQuantity: '287.00000000',
+//     accumulatedQuantity: '287.00000000',
+//     lastTradePrice: '0.00000923',
+//     commission: '0.28700000',
+//     commissionAsset: 'DNT',
+//     tradeTime: 1523991579794,
+//     tradeId: 2280547,
+//     I: 23272161,
+//     w: false,
+//     maker: true,
+//     M: true,
+//     O: -1,
+//     Z: '-0.00000001'
+// }
+// ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ +
+// data.eventType
+
+// data.balances
+
+
+// DATATATATATATATATATATATA undefined {
+//     eventType: 'outboundAccountInfo',
+//     eventTime: 1523991579799,
+//     makerCommission: 10,
+//     takerCommission: 10,
+//     buyerCommission: 0,
+//     sellerCommission: 0,
+//     canTrade: true,
+//     canWithdraw: true,
+//     canDeposit: true,
+//     lastUpdateTime: 1523991579801,
+//     balances: [{
+//             asset: 'BTC',
+//             availableBalance: '0.00000765',
+//             onOrderBalance: '0.00374738'
+//         },
+//         {
+//             asset: 'LTC',
+//             availableBalance: '0.00900000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ETH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BNC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ICO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'NEO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BNB',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: '123',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: '456',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'QTUM',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EOS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GAS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BCC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BTM',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'USDT',
+//             availableBalance: '420.00330248',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'HCC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'HSR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'OAX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DNT',
+//             availableBalance: '286.71300000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MCO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ICN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ELC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'PAY',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ZRX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'OMG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'WTC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LRX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'YOYO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LRC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LLT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'TRX',
+//             availableBalance: '3496.50000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'FID',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SNGLS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'STRAT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BQX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'FUN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'KNC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CDT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'XVG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'IOTA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SNM',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LINK',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CVC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'TNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'REP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CTR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MDA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MTL',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SALT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'NULS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SUB',
+//             availableBalance: '115.55700000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'STX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MTH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CAT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ADX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'PIX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ETC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ENG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ZEC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'AST',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: '1ST',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DGD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BAT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DASH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'POWR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BTG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'REQ',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'XMR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EVX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'VIB',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ENJ',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'VEN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CAG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EDG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ARK',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'XRP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MOD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'AVT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'STORJ',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'KMD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'RCN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EDO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'QASH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SAN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DATA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DLT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GUP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MCAP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MANA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'PPT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'OTN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CFD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'RDN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GXS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'AMB',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ARN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BCPT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         ...62 more items
+//     ]
+// }
+// ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ +
+// DATATATATATATATATATATATA undefined
+// undefined
+// undefined {
+//     eventType: 'executionReport',
+//     eventTime: 1523991585519,
+//     symbol: 'DNTBTC',
+//     newClientOrderId: 'web_f80852b974784fb4a3947edaa35dbcc1',
+//     side: 'BUY',
+//     orderType: 'LIMIT',
+//     cancelType: 'GTC',
+//     quantity: '693.00000000',
+//     price: '0.00000923',
+//     stopPrice: '0.00000000',
+//     icebergQuantity: '0.00000000',
+//     g: -1,
+//     originalClientOrderId: 'null',
+//     executionType: 'TRADE',
+//     orderStatus: 'FILLED',
+//     rejectReason: 'NONE',
+//     orderId: 10664499,
+//     lastTradeQuantity: '406.00000000',
+//     accumulatedQuantity: '693.00000000',
+//     lastTradePrice: '0.00000923',
+//     commission: '0.40600000',
+//     commissionAsset: 'DNT',
+//     tradeTime: 1523991585523,
+//     tradeId: 2280548,
+//     I: 23272166,
+//     w: false,
+//     maker: true,
+//     M: true,
+//     O: -1,
+//     Z: '-0.00000001'
+// }
+
+
+
+
+// binanceWS.onCombinedStream([
+
+//         streams.ticker('BTCUSDT')
+//     ],
+//     (streamEvent) => {
+//         switch (streamEvent.stream) {
+
+//             case streams.ticker('BTCUSDT'):
+//                 console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//                 console.log('Ticker event for', streamEvent.data.symbol);
+//                 console.log('Current Price is', streamEvent.data.weightedAveragePrice);
+//                 console.log('price has changed by $', streamEvent.data.priceChange);
+//                 console.log('price has changed by $', streamEvent.data.priceChange);
+//                 console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+//                 break;
+//         }
+//     }
+// );
+// ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ +
+// DATATATATATATATATATATATA undefined {
+//     eventType: 'outboundAccountInfo',
+//     eventTime: 1523991585521,
+//     makerCommission: 10,
+//     takerCommission: 10,
+//     buyerCommission: 0,
+//     sellerCommission: 0,
+//     canTrade: true,
+//     canWithdraw: true,
+//     canDeposit: true,
+//     lastUpdateTime: 1523991585523,
+//     balances: [{
+//             asset: 'BTC',
+//             availableBalance: '0.00000765',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LTC',
+//             availableBalance: '0.00900000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ETH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BNC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ICO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'NEO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BNB',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: '123',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: '456',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'QTUM',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EOS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GAS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BCC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BTM',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'USDT',
+//             availableBalance: '420.00330248',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'HCC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'HSR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'OAX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DNT',
+//             availableBalance: '692.30700000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MCO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ICN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ELC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'PAY',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ZRX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'OMG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'WTC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LRX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'YOYO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LRC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LLT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'TRX',
+//             availableBalance: '3496.50000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'FID',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SNGLS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'STRAT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BQX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'FUN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'KNC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CDT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'XVG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'IOTA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SNM',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'LINK',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CVC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'TNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'REP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CTR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MDA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MTL',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SALT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'NULS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SUB',
+//             availableBalance: '115.55700000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'STX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MTH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CAT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ADX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'PIX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ETC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ENG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ZEC',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'AST',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: '1ST',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GNT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DGD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BAT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DASH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'POWR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BTG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'REQ',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'XMR',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EVX',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'VIB',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ENJ',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'VEN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CAG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EDG',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ARK',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'XRP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MOD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'AVT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'STORJ',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'KMD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'RCN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'EDO',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'QASH',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'SAN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DATA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'DLT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GUP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MCAP',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'MANA',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'PPT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'OTN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'CFD',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'RDN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'GXS',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'AMB',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'ARN',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         {
+//             asset: 'BCPT',
+//             availableBalance: '0.00000000',
+//             onOrderBalance: '0.00000000'
+//         },
+//         ...62 more items
+//     ]
+// }
+// ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ ++ +
+// DATATATATATATATATATATATA undefined
+
+
+{
+    _beautifications: {
+        aggTrades: {
+            a: 'aggTradeId',
+            p: 'price',
+            q: 'quantity',
+            f: 'firstTradeId',
+            l: 'lastTradeId',
+            T: 'timestamp',
+            m: 'maker',
+            M: 'bestPriceMatch'
+        },
+        klines: {
+            '0': 'openTime',
+            '1': 'open',
+            '2': 'high',
+            '3': 'low',
+            '4': 'close',
+            '5': 'volume',
+            '6': 'closeTime',
+            '7': 'quoteAssetVolume',
+            '8': 'trades',
+            '9': 'takerBaseAssetVolume',
+            '10': 'takerQuoteAssetVolume',
+            '11': 'ignored'
+        },
+        bids: [
+            [Object]
+        ],
+        asks: [
+            [Object]
+        ],
+        depthUpdateEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            U: 'firstUpdateId',
+            u: 'lastUpdateId',
+            b: 'bidDepthDelta',
+            a: 'askDepthDelta'
+        },
+        bidDepthDelta: [
+            [Object]
+        ],
+        askDepthDelta: [
+            [Object]
+        ],
+        klineEvent: { e: 'eventType', E: 'eventTime', s: 'symbol', k: 'kline' },
+        kline: {
+            t: 'startTime',
+            T: 'endTime',
+            s: 'symbol',
+            i: 'interval',
+            f: 'firstTradeId',
+            L: 'lastTradeId',
+            o: 'open',
+            c: 'close',
+            h: 'high',
+            l: 'low',
+            v: 'volume',
+            n: 'trades',
+            x: 'final',
+            q: 'quoteVolume',
+            V: 'volumeActive',
+            Q: 'quoteVolumeActive',
+            B: 'ignored'
+        },
+        aggTradeEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            a: 'tradeId',
+            p: 'price',
+            q: 'quantity',
+            f: 'firstTradeId',
+            l: 'lastTradeId',
+            T: 'time',
+            m: 'maker',
+            M: 'ignored'
+        },
+        outboundAccountInfoEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            m: 'makerCommission',
+            t: 'takerCommission',
+            b: 'buyerCommission',
+            s: 'sellerCommission',
+            T: 'canTrade',
+            W: 'canWithdraw',
+            D: 'canDeposit',
+            B: 'balances',
+            u: 'lastUpdateTime'
+        },
+        balances: [
+            [Object]
+        ],
+        executionReportEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            c: 'newClientOrderId',
+            S: 'side',
+            o: 'orderType',
+            f: 'cancelType',
+            q: 'quantity',
+            p: 'price',
+            P: 'stopPrice',
+            F: 'icebergQuantity',
+            C: 'originalClientOrderId',
+            x: 'executionType',
+            X: 'orderStatus',
+            r: 'rejectReason',
+            i: 'orderId',
+            l: 'lastTradeQuantity',
+            z: 'accumulatedQuantity',
+            L: 'lastTradePrice',
+            n: 'commission',
+            N: 'commissionAsset',
+            m: 'maker',
+            T: 'tradeTime',
+            t: 'tradeId'
+        },
+        tradeEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            t: 'tradeId',
+            p: 'price',
+            q: 'quantity',
+            b: 'buyerOrderId',
+            a: 'sellerOrderId',
+            T: 'time',
+            m: 'maker',
+            M: 'ignored'
+        },
+        '24hrTickerEvent': {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            p: 'priceChange',
+            P: 'priceChangePercent',
+            w: 'weightedAveragePrice',
+            x: 'previousClose',
+            c: 'currentClose',
+            Q: 'closeQuantity',
+            b: 'bestBid',
+            B: 'bestBidQuantity',
+            a: 'bestAskPrice',
+            A: 'bestAskQuantity',
+            o: 'open',
+            h: 'high',
+            l: 'low',
+            v: 'baseAssetVolume',
+            q: 'quoteAssetVolume',
+            O: 'openTime',
+            C: 'closeTime',
+            F: 'firstTradeId',
+            L: 'lastTradeId',
+            n: 'trades'
+        }
+    }
+}
+Beautifier {
+    _beautifications: {
+        aggTrades: {
+            a: 'aggTradeId',
+            p: 'price',
+            q: 'quantity',
+            f: 'firstTradeId',
+            l: 'lastTradeId',
+            T: 'timestamp',
+            m: 'maker',
+            M: 'bestPriceMatch'
+        },
+        klines: {
+            '0': 'openTime',
+            '1': 'open',
+            '2': 'high',
+            '3': 'low',
+            '4': 'close',
+            '5': 'volume',
+            '6': 'closeTime',
+            '7': 'quoteAssetVolume',
+            '8': 'trades',
+            '9': 'takerBaseAssetVolume',
+            '10': 'takerQuoteAssetVolume',
+            '11': 'ignored'
+        },
+        bids: [
+            [Object]
+        ],
+        asks: [
+            [Object]
+        ],
+        depthUpdateEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            U: 'firstUpdateId',
+            u: 'lastUpdateId',
+            b: 'bidDepthDelta',
+            a: 'askDepthDelta'
+        },
+        bidDepthDelta: [
+            [Object]
+        ],
+        askDepthDelta: [
+            [Object]
+        ],
+        klineEvent: { e: 'eventType', E: 'eventTime', s: 'symbol', k: 'kline' },
+        kline: {
+            t: 'startTime',
+            T: 'endTime',
+            s: 'symbol',
+            i: 'interval',
+            f: 'firstTradeId',
+            L: 'lastTradeId',
+            o: 'open',
+            c: 'close',
+            h: 'high',
+            l: 'low',
+            v: 'volume',
+            n: 'trades',
+            x: 'final',
+            q: 'quoteVolume',
+            V: 'volumeActive',
+            Q: 'quoteVolumeActive',
+            B: 'ignored'
+        },
+        aggTradeEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            a: 'tradeId',
+            p: 'price',
+            q: 'quantity',
+            f: 'firstTradeId',
+            l: 'lastTradeId',
+            T: 'time',
+            m: 'maker',
+            M: 'ignored'
+        },
+        outboundAccountInfoEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            m: 'makerCommission',
+            t: 'takerCommission',
+            b: 'buyerCommission',
+            s: 'sellerCommission',
+            T: 'canTrade',
+            W: 'canWithdraw',
+            D: 'canDeposit',
+            B: 'balances',
+            u: 'lastUpdateTime'
+        },
+        balances: [
+            [Object]
+        ],
+        executionReportEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            c: 'newClientOrderId',
+            S: 'side',
+            o: 'orderType',
+            f: 'cancelType',
+            q: 'quantity',
+            p: 'price',
+            P: 'stopPrice',
+            F: 'icebergQuantity',
+            C: 'originalClientOrderId',
+            x: 'executionType',
+            X: 'orderStatus',
+            r: 'rejectReason',
+            i: 'orderId',
+            l: 'lastTradeQuantity',
+            z: 'accumulatedQuantity',
+            L: 'lastTradePrice',
+            n: 'commission',
+            N: 'commissionAsset',
+            m: 'maker',
+            T: 'tradeTime',
+            t: 'tradeId'
+        },
+        tradeEvent: {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            t: 'tradeId',
+            p: 'price',
+            q: 'quantity',
+            b: 'buyerOrderId',
+            a: 'sellerOrderId',
+            T: 'time',
+            m: 'maker',
+            M: 'ignored'
+        },
+        '24hrTickerEvent': {
+            e: 'eventType',
+            E: 'eventTime',
+            s: 'symbol',
+            p: 'priceChange',
+            P: 'priceChangePercent',
+            w: 'weightedAveragePrice',
+            x: 'previousClose',
+            c: 'currentClose',
+            Q: 'closeQuantity',
+            b: 'bestBid',
+            B: 'bestBidQuantity',
+            a: 'bestAskPrice',
+            A: 'bestAskQuantity',
+            o: 'open',
+            h: 'high',
+            l: 'low',
+            v: 'baseAssetVolume',
+            q: 'quoteAssetVolume',
+            O: 'openTime',
+            C: 'closeTime',
+            F: 'firstTradeId',
+            L: 'lastTradeId',
+            n: 'trades'
+        }
+    }
+}
