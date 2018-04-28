@@ -9,16 +9,6 @@ var kraken = new KrakenClient(config.kraken.apiKey, config.kraken.private);
 var calls = {};
 
 
-// console.log(util.inspect(calls, false, null));
-// var calls = function(apiSettings) {
-
-//     this.kraken = new KrakenClient(config.apiSettings.apiKey, config.apiSettings.private);
-//     this.price = price;
-
-//     _.bind(this, 'price');
-
-// };
-
 calls.price = function(err) {
     if (err) {
 
@@ -32,18 +22,12 @@ calls.price = function(err) {
             } else {
                 var currentVal = data.result.XXBTZUSD.a;
                 // console.log(util.inspect(currentVal, false, null));
-                console.log("Bitcoin is currently valued at: ", currentVal[0]);
+                console.log("\nBitcoin is currently valued at: ", currentVal[0]);
             }
         })
     }
 };
-
-
-// console.log(module.exports);
-// console.log('====================');
-// console.log(module);
-
-
+// console.log(currentVal);
 module.exports = calls;
 /*
 <pair_name> = pair name

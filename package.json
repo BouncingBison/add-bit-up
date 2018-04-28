@@ -15,6 +15,8 @@
         "binance": "^1.3.3",
         "inquirer": "^5.2.0",
         "kraken-exchange-api": "^1.0.0",
+        "math": "0.0.3",
+        "mathjs": "^4.1.2",
         "nodemon": "^1.17.3",
         "underscore": "^1.8.3",
         "wunderbar": "0.0.2"

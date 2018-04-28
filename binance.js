@@ -1,3 +1,4 @@
+const inquirer = require('inquirer');
 const config = require('./config.js');
 const api = require('binance');
 const binanceRest = new api.BinanceRest({
@@ -6,121 +7,180 @@ const binanceRest = new api.BinanceRest({
     timeout: 15000, // Optional, defaults to 15000, is the request time out in milliseconds
     recvWindow: 10000, // Optional, defaults to 5000, increase if you're getting timestamp errors
     disableBeautification: false,
-    /*
-     * Optional, default is false. Binance's API returns objects with lots of one letter keys.  By
-     * default those keys will be replaced with more descriptive, longer ones.
-     */
     handleDrift: false
-        /* Optional, default is false.  If turned on, the library will attempt to handle any drift of
-         * your clock on it's own.  If a request fails due to drift, it'll attempt a fix by requesting
-         * binance's server time, calculating the difference with your own clock, and then reattempting
-         * the request.
-         */
+
 });
 
 const binanceWS = new api.BinanceWS(true); // Argument specifies whether the responses should be beautified, defaults to true
 const streams = binanceWS.streams;
 
-// You can use promises
-// binanceRest.allOrders({
-//         symbol: 'BNBBTC' // Object is transformed into a query string, timestamp is automatically added
-//     })
-//     .then((data) => {
-//         console.log(data);
-//     })
-//     .catch((err) => {
-//         console.error(err);
-//     });
+var exchange = {};
 
-/*
- * Or you can provide a callback.  Also, instead of passing an object as the query, routes
- * that only mandate a symbol, or symbol and timestamp, can be passed a string.
-// //  */
-// binanceRest.allOrders('BNBBTC', (err, data) => {
-//     if (err) {
-//         console.error(err);
-//     } else {
-//         console.log(data);
-//     }
-// });
+exchange.balance = function() {
 
+    binanceRest.account((err, data) => {
 
-binanceRest.account((err, data) => {
-    // if (err) {
-    //     console.error(err);
-    // } else {
-    //     console.log(data.balances);
-    // }
-    if (data.balances) {
-        console.log(data);
-    } else {
-        console.log("condition has not been met");
-    }
-});
-/*
- * WebSocket API
- *
- * Each call to onXXXX initiates a new websocket for the specified route, and calls your callback with
- * the payload of each message received.  Each call to onXXXX returns the instance of the websocket
- * client if you want direct access(https://www.npmjs.com/package/ws).
- */
+        console.log("Current Balances are listed below")
+        console.log("_______________________________________")
+        console.log("                                       ")
 
-// binanceWS.onDepthUpdate('BNBBTC', (data) => {
-//     console.log(data);
-// });
+        // console.log(data); 
+        data.balances.forEach(function(item, index, array) {
+            // holds the value of an assets ticker symbol
+            var tickerSymbol = data.balances[index].asset;
+            // holds value of balance that is locked due to open trade orders
+            var lockedBalance = data.balances[index].locked;
+            // holds value of balance of that is unlocked in account
+            var freeBalance = data.balances[index].free;
+            // string value that represents a zero balance
+            var zeroBalance = '0.00000000';
 
-// binanceWS.onAggTrade('BNBBTC', (data) => {
-//     console.log(data);
-// });
+            // if the locked and free balnces have a value that != 0 we want to log this to the user. 
+            if (lockedBalance && freeBalance != zeroBalance) {
+                console.dir("|$" + tickerSymbol + " | Free | " + freeBalance + " | Lock | " + lockedBalance + " ");
+                console.log("_______________________________________")
+            }
+        });
 
-// binanceWS.onKline('BNBBTC', '1m', (data) => {
-//     console.log(data);
-// });
-
-/*
- * You can use one websocket for multiple streams.  There are also helpers for the stream names, but the
- * documentation has all of the stream names should you want to specify them explicitly.
- */
-
-binanceWS.onUserData(binanceRest, (data) => {
-        console.log(data);
-    }, 6000) // Optional, how often the keep alive should be sent in milliseconds
-    .then((ws) => {
-        // websocket instance available here
-        // console.log(ws);
+        return data.balances;
+        // console.log(data.balences);
     });
 
-// binanceWS.onCombinedStream([
-//         streams.depth('BNBBTC'),
-//         streams.kline('BNBBTC', '5m'),
-//         streams.trade('BNBBTC'),
-//         streams.ticker('BNBBTC')
-//     ],
-//     (streamEvent) => {
-//         switch (streamEvent.stream) {
-//             case streams.depth('BNBBTC'):
-//                 console.log('Depth event, update order book\n', streamEvent.data);
-//                 break;
-//             case streams.kline('BNBBTC', '5m'):
-//                 console.log('Kline event, update 5m candle display\n', streamEvent.data);
-//                 break;
-//             case streams.trade('BNBBTC'):
-//                 console.log('Trade event, update trade history\n', streamEvent.data);
-//                 break;
-//             case streams.ticker('BNBBTC'):
-//                 console.log('Ticker event, update market stats\n', streamEvent.data);
-//                 break;
-//         }
-//     }
-// );
+}
 
-/*
- * onUserData requires an instance of BinanceRest in order to make the necessary startUserDataStream and
- * keepAliveUserDataStream calls.  The webSocket instance is returned by promise rather than directly
- * due to needing to request a listenKey from the server first.
- */
+exchange.tickerActivate = function() {
+
+    inquirer.prompt({
+        type: 'list',
+        name: 'decision',
+        message: 'Would you like to turn the live ticker on?',
+        choices: ['yes', 'no', 'maybe']
+    }).then(answers => {
+        var what = answers.decision;
+        if (what === 'yes') {
+            console.log("activating ticker!");
+            choices()
+        } else {
+            var quoteChain = new Promise(function(resolve, reject) {
+
+                // calls.price
+                resolve(exchange.balances())
+            });
+
+            quoteChain.then(mainPrompt())
+        }
 
 
-// binanceWS.account((err, data) => {
-//     console.log(data);
-// })
+        function choices() {
+
+            inquirer.prompt({
+                type: 'input',
+                name: 'tickerChoice',
+                message: 'input the a coins ticker symbol paired with Bitcoin (BTC) eg: `ETHBTC`',
+                validate: function(value) {
+
+                    var pass = value.match(
+                        // using a regular expression to give some guidance to user inputs 
+                        /^[a-zA-Z]{3,7}$/
+                    );
+                    if (pass) {
+                        return true;
+                    }
+                    return 'please double check your ticker input!'
+                }
+
+            }).then(answers => {
+
+                // this.async()
+                console.log(answers.tickerChoice);
+                var tickerChoices = answers.tickerChoice;
+
+                console.log(tickerChoices);
+                // tickerChoices.push(answers);
+                // console.log(tickerChoices);
+                exchange.tickerTape(tickerChoices)
+            })
+
+        }
+
+
+    })
+
+
+    // binanceWS.onUserData(binanceRest, (data) => {
+    //         console.log(data);
+    //     }, 6000) // Optional, how often the keep alive should be sent in milliseconds
+    //     .then((ws) => {
+    //         // websocket instance available here
+    //         // console.log(ws);
+    //     });
+
+
+    exchange.tickerTape = function(tickerChoices) {
+
+        console.log(typeof tickerChoices);
+
+        var query = tickerChoices;
+
+
+        binanceWS.onCombinedStream(query, [
+                streams.ticker(query)
+            ],
+            (streamEvent) => {
+                switch (streamEvent.stream) {
+                    case streams.ticker(query):
+                        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                        console.log('Ticker event for', streamEvent.data.symbol);
+                        console.log('Current Price is', streamEvent.data.weightedAveragePrice);
+                        console.log('price has changed by $', streamEvent.data.priceChange);
+                        console.log('price has changed by $', streamEvent.data.priceChange);
+                        console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+                        break;
+                }
+            }
+        );
+
+        // tickerChoices.forEach(function(item, array, index) {
+
+        //     // the streamKey variable is the user input for the ticker functions, 
+
+
+        //     query = {}
+        //         // we parse the array and pull out the string value of the ticker symbol, passing it to the stream API
+        //     query.symbol = "'" + item.tickerChoice + "'";
+
+        //     console.log(typeof query.symbol);
+        //     console.log(query.symbol);
+
+
+        // console.log("itemmmmm", item.tickerChoice);
+
+        // binanceWS.onCombinedStream(query.symbol, [
+        //         streams.ticker(query.symbol)
+        //     ],
+        //     (streamEvent) => {
+        //         switch (streamEvent.stream) {
+        //             case streams.ticker(query.symbol):
+        //                 console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        //                 console.log('Ticker event for', streamEvent.data.symbol);
+        //                 console.log('Current Price is', streamEvent.data.weightedAveragePrice);
+        //                 console.log('price has changed by $', streamEvent.data.priceChange);
+        //                 console.log('price has changed by $', streamEvent.data.priceChange);
+        //                 console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        //                 break;
+        //         }
+        //     }
+        // );
+
+
+        // });
+
+
+
+
+    }
+
+}
+
+
+module.exports = exchange;
